@@ -25,6 +25,13 @@ C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer.
 
 
+
+
+// *****************************************
+
+solution 1
+
+
 const romanHash = {
     I: 1,
     V: 5,
@@ -63,3 +70,45 @@ const romanHash = {
     }
     return accumulator;
   }
+
+
+
+
+  solution 2
+  /*
+1. create sum variable
+2. loop through s.
+  a. create "prev" variable
+  b. create switch class for each possible variable as a value
+3. return sum
+*/
+
+ const romanToInt = function(s) {
+    let sum = 0;
+    for (let i = 0; i < s.length; i++) {
+        let prev = s[i-1];
+        switch (s[i]) {
+            case 'I': sum +=1;
+                break;
+            case "V": sum = prev ==="I" ? sum + 3 : sum + 5;
+                break;
+            case "X": sum = prev ==="I" ? sum + 8 : sum + 10;
+                break;
+            case "L": sum = prev ==="X" ? sum + 30 : sum + 50;
+                break;
+            case "C": sum = prev ==="X" ? sum + 80 : sum + 100;
+                break;
+            case "D": sum = prev ==="C" ? sum + 300 : sum + 500;
+                break;
+            case "M": sum = prev ==="C" ? sum + 800 : sum + 1000;
+                break;
+            default:
+                break;
+        }
+    }
+    return sum
+};
+
+Time: O(n)
+Space: O(1)
+
