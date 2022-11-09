@@ -9,7 +9,9 @@
 
 // A string a is lexicographically smaller than a string b (of the same length) if in the first position where a and b differ,
 //  a has a character strictly smaller than the corresponding character in b. 
-//  For example, "abcc" is lexicographically smaller than "abcd" because the first position they differ is at the fourth character, and 'c' is smaller than 'd'.
+//  For example, "abcc" is lexicographically smaller than "abcd"
+//  because the first position they differ is at the fourth character, 
+// git and 'c' is smaller than 'd'.
 
 
 const breakPalindrome = function(palindrome) {
