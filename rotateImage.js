@@ -20,8 +20,8 @@ Output: [
 // tramposing is the strategy
 
 function rotate(matrix) {
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = i; j < matrix.length; j++) {
+  for (let row = 0; row < matrix.length; row++) {
+    for (let column = i; column < matrix.length; column++) {
       let temp = matrix[i][j];
       matrix[i][j] = matrix[j][i];
       matrix[j][i] = temp;
@@ -36,4 +36,21 @@ function rotate(matrix) {
     }
   }
   return matrix;
+}
+// ***************************
+// Best solution
+
+
+time: O(n)
+space: O(1)
+
+const rotate = function(matrix){
+    for(let row = 0; row < matrix.length; row++){
+        for(let column = row; column < matrix[0].length; column++){
+            [matrix[row][column], matrix[column][row]]= [matrix[column][row], matrix[row][column]]
+        }
+    }
+    for (let row of matrix) {
+        row.reverse()
+    }
 }
