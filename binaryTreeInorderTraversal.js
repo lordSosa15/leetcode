@@ -1,45 +1,37 @@
 // Given the root of a binary tree,
 // return the inorder traversal of its nodes' values.
 
-// Follow up: Recursive solution is trivial, could you do it iteratively?
+// Follow up: Recursive solution is trivial, 
+// could you do it iteratively?
 
-// function inorderTraversal(root) {
-//     const result = []
-//     const walk = (noe) => {
-//         if (node.left) walk(node.left)
-//         result.push(node.val)
-//         if (node.right)walk(node.right)
-//     }
-//     walk(root)
-// }
 
-var inorderTraversal = function (root) {
-  const result = [];
-  if (root === null) return result;
 
-  const stack = [];
-
-  const pushStack = (node) => {
-    while (node !== null) {
-      stack.push(node);
-      node = node.left;
-    }
-  };
-
-  pushStack(root);
-
-  while (stack.length > 0) {
-    const top = stack.pop();
-    result.push(top.val);
-    if (top.right) {
-      pushStack(top.right);
-    }
-  }
-
-  return result;
-};
-
+// *************************************************
 // most optimal
+
+// recursion
+time:O(n)
+space: O(n) + callsack O(n)
+
+function inorderTraversal(root) {
+  let result = [];
+  let walk = (node) => {
+    if (node === null) return;
+    walk(node.left);
+    result.push(node.val);
+    walk(node.right);
+  };
+  walk(root);
+  return result;
+}
+
+
+//  iteration
+//      1
+//    2   3
+//  4  5
+//      6
+
 // morris algorithm
 
 // 1: initialize tourist as root
@@ -86,3 +78,32 @@ function inorderTraversal(root) {
   }
   return solution;
 }
+
+
+
+
+var inorderTraversal = function (root) {
+  const result = [];
+  if (root === null) return result;
+
+  const stack = [];
+
+  const pushStack = (node) => {
+    while (node !== null) {
+      stack.push(node);
+      node = node.left;
+    }
+  };
+
+  pushStack(root);
+
+  while (stack.length > 0) {
+    const top = stack.pop();
+    result.push(top.val);
+    if (top.right) {
+      pushStack(top.right);
+    }
+  }
+
+  return result;
+};
